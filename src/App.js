@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import Shelf from './Shelf'
+import BookShelf from './BookShelf'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -18,13 +19,17 @@ class BooksApp extends React.Component {
 
   // Get all books via the BooksAPI after App Component has been initially rendered
   componentDidMount() {
-        BooksAPI.getAll()
-        .then((books) => {
-            this.setState(() => ({
-                books
-            }))
-        })
-    }
+      BooksAPI.getAll()
+      .then((books) => {
+          this.setState(() => ({
+              books
+          }))
+      })
+  }
+
+  openSearch = () => {
+    this.setState({ showSearchPage: true })
+  }
 
   render() {
 
@@ -52,21 +57,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <Shelf title={"Currently Reading"} books={this.state.books} />
-                <Shelf title={"Want to Read"} books={this.state.books} />
-                <Shelf title={"Read"} books={this.state.books} />
-              </div>
-            </div>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
-          </div>
+          <BookShelf title={"MyReads"} books={this.state.books} openSearch={this.openSearch} />
         )}
       </div>
     )
