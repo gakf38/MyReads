@@ -6,19 +6,28 @@ import BookShelf from './BookShelf'
 import './App.css'
 
 class BooksApp extends React.Component {
-  
+
   state = {
     books: []
   }
 
   // Get all books via the BooksAPI after App Component has been initially rendered
   componentDidMount() {
-      BooksAPI.getAll()
-      .then((books) => {
-          this.setState(() => ({
-              books
-          }))
-      })
+    BooksAPI.getAll()
+    .then((books) => {
+      this.setState(() => ({
+          books
+      }))
+    })
+  }
+
+  updateBook = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then((books) => {
+      this.setState(() => ({
+        books
+      }))
+    })
   }
 
   render() {
