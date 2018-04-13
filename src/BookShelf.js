@@ -14,9 +14,9 @@ class BookShelf extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Shelf title={"Currently Reading"} books={this.props.books} />
-            <Shelf title={"Want to Read"} books={this.props.books} />
-            <Shelf title={"Read"} books={this.props.books} />
+            <Shelf title={"Currently Reading"} books={this.props.books} updateBook={this.props.updateBook} />
+            <Shelf title={"Want to Read"} books={this.props.books} updateBook={this.props.updateBook} />
+            <Shelf title={"Read"} books={this.props.books} updateBook={this.props.updateBook} />
           </div>
         </div>
         <div className="open-search">
