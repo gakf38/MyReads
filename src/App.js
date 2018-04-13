@@ -13,6 +13,10 @@ class BooksApp extends React.Component {
 
   // Get all books via the BooksAPI after App Component has been initially rendered
   componentDidMount() {
+    this.getBooks()
+  }
+
+  getBooks = () => {
     BooksAPI.getAll()
     .then((books) => {
       this.setState(() => ({
@@ -22,9 +26,10 @@ class BooksApp extends React.Component {
   }
 
   updateBook = (book, shelf) => {
-    
-    console.log(book, shelf)
-
+    BooksAPI.update(book, shelf)
+    .then((response) => {
+      this.getBooks()
+    })
   }
 
   render() {
