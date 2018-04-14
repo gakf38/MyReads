@@ -10,6 +10,26 @@ class BookSearch extends Component {
 		books: []
 	}
 
+	setBooks = (books) => {
+		this.setState(() => ({
+			books: books
+		}))
+	}
+
+	searchBooks = (query) => {
+		BooksAPI.search(query)
+		.then((books) => {
+			if (books.error === 'empty query')
+			{
+				this.setBooks([])
+			}
+			else
+			{
+				this.setBooks(books)
+			}
+		})
+	}
+
 	updateQuery = (query) => {
 		this.setState(() => ({
 			query
@@ -17,31 +37,11 @@ class BookSearch extends Component {
 		() => {
 			if (query)
 			{
-				BooksAPI.search(query)
-				.then((books) => {
-					if(books.error === 'empty query')
-					{
-						this.setState(() => ({
-							books: []
-						}))
-
-						console.log("Empty query")
-					}
-					else
-					{
-						this.setState(() => ({
-							books
-						}))
-
-						console.log("Books", books)
-					}
-				})
+				this.searchBooks(query)
 			}
 			else
 			{
-				this.setState(() => ({
-					books: []
-				}))
+				this.setBooks([])
 			}
 		})
 	}
