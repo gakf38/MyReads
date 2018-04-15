@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 class Shelf extends Component {
+
+	static propTypes = {
+		title: PropTypes.string,
+		books: PropTypes.array,
+		updateBook: PropTypes.func
+	}
 
 	render() {
 
@@ -24,11 +31,14 @@ class Shelf extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
 
-                	{shelfBooks.map((book) => (
-            			<li key={book.id}>
-            				<Book book={book} updateBook={this.props.updateBook} />
-            			</li>
-                	))}
+                	{
+                		// Create a Book for each object in the shelfBooks array
+                		shelfBooks.map((book) => (
+	            			<li key={book.id}>
+	            				<Book book={book} updateBook={this.props.updateBook} />
+	            			</li>
+                		))
+                	}
 
                 </ol>
               </div>
