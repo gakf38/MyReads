@@ -10,9 +10,21 @@ class BookSearch extends Component {
 		books: []
 	}
 
-	setBooks = (books) => {
+	setBooks = (searchResults) => {
+
+		this.props.books.forEach((book) => {
+
+			let match = searchResults.find((result) => result.id === book.id)
+
+			if (match)
+			{
+				match.shelf = book.shelf
+			}
+
+		})
+
 		this.setState(() => ({
-			books: books
+			books: searchResults
 		}))
 	}
 
