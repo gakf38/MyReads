@@ -16,6 +16,7 @@ class BookSearch extends Component {
 		books: []
 	}
 
+	// Populate the books array in state with the search results (and the current books in the book shelf)
 	setBooks = (searchResults) => {
 
 		this.props.books.forEach((book) => {
@@ -34,6 +35,7 @@ class BookSearch extends Component {
 		}))
 	}
 
+	// Generate books based on the given search query
 	searchBooks = (query) => {
 		BooksAPI.search(query)
 		.then((books) => {
@@ -48,6 +50,7 @@ class BookSearch extends Component {
 		})
 	}
 
+	// Update the query string in state based on the Controlled Input
 	updateQuery = (query) => {
 		this.setState(() => ({
 			query
