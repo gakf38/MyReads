@@ -4,6 +4,13 @@ import PropTypes from 'prop-types'
 import Shelf from './Shelf'
 
 function BookShelf(props) {
+
+  const shelves = [
+    "Currently Reading",
+    "Want to Read",
+    "Read"
+  ]
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -11,9 +18,9 @@ function BookShelf(props) {
       </div>
       <div className="list-books-content">
         <div>
-          <Shelf title={"Currently Reading"} books={props.books} updateBook={props.updateBook} />
-          <Shelf title={"Want to Read"} books={props.books} updateBook={props.updateBook} />
-          <Shelf title={"Read"} books={props.books} updateBook={props.updateBook} />
+          {shelves.map((shelf) => (
+            <Shelf key={shelf} title={shelf} books={props.books} updateBook={props.updateBook} />
+          ))}
         </div>
       </div>
       <div className="open-search">
